@@ -11,7 +11,10 @@ Run `arduino-cli sketch new <projectName>` in root of new project's git repo.
 ## Get Board Info
 
 - List devices with `arduino-cli board list`.
-- Note the value of `FQBM` (Fully Qualified Board Name) and `Core` of the board you'd like to use. This info will be used later.
+- Note the value of the bellow columns for the board you'll use (they'll be used later:
+   - `Port`
+   - `FQBM` (Fully Qualified Board Name)
+   - `Core`
 
 ## Download Core
 
@@ -25,4 +28,8 @@ Install libraries needed by the project with `arduino-cli lib install <libraryNa
 
 - Navigate into project's directory.
 - Run `arduino-cli compile -b <fqbm>`
+
+## Upload Project to Board
+
+Ensure your user is a member of the `dialout` group, then run `arduino-cli upload -b <fqbm> -p <port>`.
 
