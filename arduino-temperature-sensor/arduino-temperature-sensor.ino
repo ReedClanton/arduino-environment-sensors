@@ -8,7 +8,6 @@
 #define USE_OLED true
 #define USE_SERIAL true
 #define USE_PRESSURE_SENSOR true
-#define USE_TEMPERATURE_SENSOR false // TODO: Figure out why it doesn't work.
 /* Configuration Value(s) */
 #define LOOP_WAIT 0
 /* Default Value(s) */
@@ -31,7 +30,6 @@ void setup() {
 
   /* Sensor Setup */
   if (USE_PRESSURE_SENSOR) { Pressure.begin(); }
-  if (USE_TEMPERATURE_SENSOR) { Environment.begin(); }
 }
 
 void loop() {
@@ -40,12 +38,6 @@ void loop() {
     outputAdd("Temp:       ", String(CelsiusToFahrenheit(Pressure.readTemperature())), " F");
     outputAdd("Pres:   ", String(Pressure.readPressure()), " Pa");
     outputAdd("Alt:   ", String(Pressure.readAltitude()), " m");
-  }
-
-  /* Temperature Sensor */
-  if (USE_TEMPERATURE_SENSOR) {
-    outputAdd("Temp:    ", String(Environment.readTemperature()), " C");
-    outputAdd("Humidity: ", String(Environment.readHumidity()), " %");
   }
 
   outputPublish();
