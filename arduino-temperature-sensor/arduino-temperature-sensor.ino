@@ -43,8 +43,6 @@ void loop() {
   aht.getEvent(&ahtx0_humidity, &ahtx0_temp);
   // Get sensor data from second sensor set.
   float bmp280_temp = Pressure.readTemperature();
-  uint32_t bmp280_pressure = Pressure.readPressure();
-  float bmp280_altitude = Pressure.readAltitude();
   // Error check temperature readings.
   String temp;
   if ((ahtx0_temp.temperature > bmp280_temp && ahtx0_temp.temperature > bmp280_temp * 1.1) || (ahtx0_temp.temperature < bmp280_temp && ahtx0_temp.temperature * 1.1 < bmp280_temp)) {
@@ -54,18 +52,10 @@ void loop() {
     temp = String((bmp280_temp + ahtx0_temp.temperature) / 2);
   }
   // Publish sensor data.
-  Serial.print(temp);
-  Serial.println(" C");
-  Serial.print(ahtx0_temp.temperature);
-  Serial.println(" C");
-  Serial.print(bmp280_temp);
-  Serial.println(" C");
-  Serial.print(ahtx0_humidity.relative_humidity);
-  Serial.println(" % rH");
-  Serial.print(bmp280_pressure);
-  Serial.println(" Pa");
-  Serial.print(bmp280_altitude);
-  Serial.println(" m");
+  Serial.println(temp + " C");
+  Serial.println(String(ahtx0_humidity.relative_humidity) + " % rH");
+  Serial.println(String(Pressure.readPressure()) + " Pa");
+  Serial.println(String(Pressure.readAltitude()) + " m");
 
   delay(LOOP_WAIT);
 }
