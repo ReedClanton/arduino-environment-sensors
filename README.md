@@ -1,4 +1,4 @@
-# arduino-temperature-sensor
+# arduino-environment-sensor
 
 # Create New Project
 
